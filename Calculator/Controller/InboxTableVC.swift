@@ -112,7 +112,7 @@ class InboxTableVC: UITableViewController {
             return UITableViewCell();
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "mailCell", for: indexPath);
-            let message = mailMessagesArray[indexPath.row];
+            let message = mailMessagesArray.reversed()[indexPath.row];
             cell.textLabel?.text = message.header.subject.description;
             cell.detailTextLabel?.text = message.header.sender.mailbox;
             return cell
