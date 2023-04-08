@@ -50,11 +50,9 @@ class InboxTableVC: UITableViewController {
                 if let folders = folderList {
                     // log.info("Listed all IMAP Folders: \(folders.debugDescription)");
                     self.mailFoldersArray = folders;
-                    for folder in self.mailFoldersArray {
-                        log.info(folder.path)
-                        if folder.path == self.inboxFolder {
-                            self.fetchMessageHeadersFromFolder(folder: folder.path, uids: self.uids);
-                        }
+                    for folder in self.mailFoldersArray where folder.path == self.inboxFolder {
+                        //log.info(folder.path)
+                        self.fetchMessageHeadersFromFolder(folder: folder.path, uids: self.uids);
                     }
                 }
                 
@@ -74,6 +72,7 @@ class InboxTableVC: UITableViewController {
                     if let inboxMessages = fetchedMessages {
                         print("The post man delivered: \(fetchedMessages.debugDescription)");
                         self.mailMessagesArray = inboxMessages;
+                        self.mailMessagesArray.reverse();
                         self.tableView.reloadData();
                     } else {
                         log.warning("The Inbox mail folder is empty!!!");
@@ -112,7 +111,7 @@ class InboxTableVC: UITableViewController {
             return UITableViewCell();
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "mailCell", for: indexPath);
-            let message = mailMessagesArray.reversed()[indexPath.row];
+            let message = mailMessagesArray[indexPath.row];
             cell.textLabel?.text = message.header.subject.description;
             cell.detailTextLabel?.text = message.header.sender.mailbox;
             return cell
