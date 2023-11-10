@@ -1,4 +1,4 @@
-# Sandbox_iOS
+# Sandbox_iOS [![Lines of code](https://tokei.rs/b1/github/alimovlex/Sandbox_iOS?category=code)](https://github.com/alimovlex/Sandbox_iOS)
 The Sandbox for iOS apps where I improve my skills in applications development using UIKit. iOS 9+
 This sandbox collection consists of this set of modules:
 
